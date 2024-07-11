@@ -24,7 +24,7 @@ For language-specific processing, ```LB-CondProbs.py``` takes a configuration fi
 
 ## Planned Improvements
 
-Wider range of languages.  Conditions include both directionality and adjacency.
+Wider range of languages.  Conditions include both directionality and adjacency.  Output is a .csv file rather than a Python dictionary.
 
 ## Disclaimer
 
