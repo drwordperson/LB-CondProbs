@@ -1,8 +1,7 @@
 ## Overview
 
-```LB-CondProbs.py``` takes a language corpus in a syllabic (V and CV signs) script and calculates the conditonal probability of a given syllabic sign appearing given that another occurs in that same word.  
-
-This Python script outputs a .txt file with the outcomes of all pairs of signs.  
+```LB-CondProbs.py``` takes a language corpus in a syllabic (V and CV signs) script and calculates the conditonal probability that a given syllabic sign appears given that another syllabic sign is found in that same word.  
+This Python script outputs a .txt file with the conditional probabilities calculated for all pairs of signs.  
 
 ## Usage
 
