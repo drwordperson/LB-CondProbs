@@ -8,7 +8,7 @@ This Python script outputs a .txt file with the outcomes of all pairs of signs.
 
 ```python LB-CondProbs.py```
 
-For language-specific processing, ``LB-CondProbs.py``` takes a configuration file-- a Python script which lays out the valid consonants and vowels which appear in the corpus of the language in question.  ```LB-CondProbs.py``` also takes a .txt file containing the section of text you would like to use as a corpus.  A config file and data set has been provided for German, and a sample output is as follows.
+For language-specific processing, ```LB-CondProbs.py``` takes a configuration file-- a Python script which lays out the valid consonants and vowels which appear in the corpus of the language in question.  ```LB-CondProbs.py``` also takes a .txt file containing the section of text you would like to use as a corpus.  A config file and data set has been provided for German, and a sample output is as follows.
 
 #### German:
 
