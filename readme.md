@@ -28,7 +28,7 @@ Wider range of languages.  Conditions include both directionality and adjacency.
 
 ## Disclaimer
 
-Currently, this script is only made available as a code sample.  Many points of linguistic complexity are elided, and there is still some room to improve the accuracy of the script when it comes to acronyms and foreign words.  Please don't publish with this script!  You have been warned.
+Currently, this script is only made available as a code sample.  Some additional complexity would be required to answer worthwhile linguistic questions with it.  You have been warned.
 
 ## Attribution
 
