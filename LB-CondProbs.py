@@ -6,7 +6,7 @@ import re
 configfile = input("Language-specific corpus config file:")
 
 with open(configfile) as letsdothis:
-    exec(letsdothis.read())
+    exec(letsdothis.read())  #NB:  The variable for the file name read in is 'text'.
 
 # Generate list of all possible V and CV characters
 
@@ -20,19 +20,16 @@ for i in range(len(consonants_l)):
         k = '-' + consonants_l[i] + vowels_l[j] + '-'
         pairs.append(k)
 
+print('Generated list of all possible V and CV pairs')
 print(pairs)
 
 #Make a list of words -> call this words_l.  Get the length of words (= the total number of words), call it words_len.
 
-words_l = []
+words_l = text.split() 
 
-p = f'({whitespace})(\\S+)({whitespace})'
-pattern = re.compile(p)
-matches = pattern.findall(text)
-for match in matches:
-    words_l.append(' -' + match[1] + '- ')
-    
 words_len = len(words_l)
+
+print('Generated list of words from corpus text')
 
 # Now, we are going to define a number of functions for operations we will use repeatedly.
 
@@ -95,6 +92,7 @@ def CondProb(UDatabase_len, Database_len):
      
 
 # Co-occurrence within the same word:  conditional probability of pair A given pair B.     
+print('Calculating conditional probability of pair A given that pair B in the same word...')
      
 PairsInWords_d = {}
 regex = 'pair'
@@ -118,6 +116,8 @@ CondProb(UPairsInWords_len, PPairsInWords_len)
 with open("CondProbSameWord.txt", 'w') as f:  
     for key, value in CondProb_d.items():  
         f.write('%s:%s\n' % (key, value))
+        
+print('Done')
 
 
 
