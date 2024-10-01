@@ -3,12 +3,16 @@ import re
 
 # Open a language-specific config file because we need a list of consonants and vowels.
 
-configfile = input("Language-specific corpus config file:")
+configfile = input("Enter language-specific corpus config file:")
 
 with open(configfile) as letsdothis:
     exec(letsdothis.read())  #NB:  The variable for the file name read in is 'text'.
 
+print("File processing complete.")
+
 # Generate list of all possible V and CV characters
+
+print("Generating list of all possible V and CV pairs...")
 
 pairs = []
 for i in range(len(vowels_l)):
@@ -20,16 +24,22 @@ for i in range(len(consonants_l)):
         k = '-' + consonants_l[i] + vowels_l[j] + '-'
         pairs.append(k)
 
-print('Generated list of all possible V and CV pairs')
+print("Pairs are:")
 print(pairs)
 
 #Make a list of words -> call this words_l.  Get the length of words (= the total number of words), call it words_len.
+
+print("Generating list of words...")
 
 words_l = text.split() 
 
 words_len = len(words_l)
 
-print('Generated list of words from corpus text')
+print("Sample of word list is:")
+print(words_l[0:10])
+
+print("Sample of text is:")
+print(text[0:50])
 
 # Now, we are going to define a number of functions for operations we will use repeatedly.
 
@@ -91,33 +101,49 @@ def CondProb(UDatabase_len, Database_len):
             CondProb_d[key] = 0
      
 
-# Co-occurrence within the same word:  conditional probability of pair A given pair B.     
-print('Calculating conditional probability of pair A given that pair B in the same word...')
-     
+# Co-occurrence within the same word:  conditional probability of pair A given pair B. 
+
+print("Calculating conditional probabilities...")    
+
+print("Constructing dictionaries for each pair...")     
 PairsInWords_d = {}
 regex = 'pair'
 FindWords(regex, words_l)
 
+print("Calulating length of those dictionaries...") 
 PairsInWords_len = {}
 LenDic(PairsInWords_d)
 PPairsInWords_len = PairsInWords_len # Rename the dictionary so that it does not get overwritten when we perform this operation again.
 
+print("Constructing dictionaries for each of two pairs...") 
 UPairsInWords_d = {}
 regex = 'pair'
 FindWordsAUB(regex, PairsInWords_d)
-     
+
+print("Calulating length of those dictionaries...")      
 PairsInWords_len = {}  # Time to perform the length function on this new dictionary.
 LenDic(UPairsInWords_d)
 UPairsInWords_len = PairsInWords_len # Again, rename the dictionary to avoid confusion.
 
+print("Conditional probability calculations...")
 CondProb_d = {}
 CondProb(UPairsInWords_len, PPairsInWords_len)
+
+print("Conditional probability calculations complete.")
+
+print("Writing output file...")
 
 with open("CondProbSameWord.txt", 'w') as f:  
     for key, value in CondProb_d.items():  
         f.write('%s:%s\n' % (key, value))
         
-print('Done')
+print("Done")
 
 
 
+
+# Automated Testing.  Tests I want:
+#   Check that the first ten words of the input correspond to the first ten words of words_l.
+#   Check that the list of pairs looks right
+#   In the output, check that X U X always = 1
+#   In the output, check that the values form a Zipfian distribution
